@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+<div id="page">
+  <div id="my-cart-container">
+    <h2 class="my-cart-title">Tickets</h2>
+    <div *ngIf="listOfSales.length == 0" class="my-cart-empty">
+      Your cart is empty.
+    </div>
+    <div *ngFor="let sale of listOfSales" class="my-cart-item">
+      <table>
+        <tr class="my-cart-event-name">
+          <td>{{ sale.event_name }}</td><td id="location">{{ sale.event_date }}</td><td rowspan="2" id="quantity">Qty: {{ sale.quantity }}</td>
+        </tr>
+        <tr class="my-cart-event-details">
+          <td>&nbsp;&nbsp;Type |&nbsp;&nbsp;{{ sale.ticket_type }}</td><td>Location |&nbsp;&nbsp;{{ sale.place_name }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div> 

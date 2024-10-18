@@ -1,0 +1,62 @@
+#page {
+    padding-top: 30px;
+    height: 100%;
+    background-image: url("https://images2.alphacoders.com/995/995170.jpg");
+  }
+  
+  #my-cart-container {
+    align-self: center;
+    margin: 15px auto;
+    padding: 15px;
+    width: 800px;
+    border: 4px solid midnightblue;
+    border-radius: 20px;
+    background-color: rgb(240, 240, 240);
+  }
+    
+    .my-cart-title {
+      font-family: 'Geologica', sans-serif;
+      font-size: 40px;
+      text-align: center;
+      color: #333;
+      margin: 16px 0;
+    }
+    
+    .my-cart-empty {
+      font-family: 'Comfortaa', sans-serif;
+      color: #999;
+    }
+    
+    .my-cart-item {
+      font-family: 'Geologica', sans-serif;
+      margin-bottom: 24px;
+      font-family: 'Comfortaa';
+    }
+    
+    table {
+      width: 100%;
+    }
+
+    td {
+      width: 40%;
+    }
+
+    .my-cart-event-name {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    #location {
+      text-align: right;
+    }
+
+    .my-cart-event-details {
+      margin-bottom: 8px;
+      color: #666;
+    }
+
+    #quantity {
+      width: 20%;
+      text-align: right;
+    }

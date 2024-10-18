@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+<div id="page">
+    <div id="sign-in">
+        <h1 class="login-title">Welcome Back!</h1>
+        <div id="login-form" (keyup.enter)="triggerLogin()">
+            <h3 class="login-title">Email</h3>
+            <input type="text" id="email" class="login-emt" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required/>
+            <h3 class="login-title">Password</h3>
+            <input type="password" id="password" class="login-emt" minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+            <button (click)="login()">Log in</button>
+        </div>
+        
+        <a href="/register">I don't have any account!</a>
+    </div>
+</div>

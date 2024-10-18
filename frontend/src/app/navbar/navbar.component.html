@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+<nav id="navbar">
+  <a id="home" routerLink="/"><mat-icon>flight_takeoff</mat-icon>Lets visit Portugal!</a>
+
+  <div class="spacer"></div>
+  <a class="nav-links" routerLink="events">All events</a>
+  <a class="nav-links cart-link" routerLink="cart" *ngIf="currentUserExists()">My tickets<mat-icon>shopping_cart</mat-icon></a>
+  <a class="nav-links" routerLink="register" *ngIf="!currentUserExists()">Register</a>
+  <a class="nav-links btn-accent" routerLink="login" *ngIf="!currentUserExists()" color="accent">Login</a>
+  <a class="nav-links btn-warn" *ngIf="currentUserExists()" (click)="logout()">Logout</a>
+  <a class="profile-btn" routerLink="profile" id="profile" *ngIf="currentUserExists()"><mat-icon>account_circle</mat-icon></a> <!--  -->
+</nav>

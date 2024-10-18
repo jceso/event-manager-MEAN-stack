@@ -1,0 +1,70 @@
+#page {
+    padding-top: 30px;
+    height: 100%;
+    background-image: url("https://images2.alphacoders.com/995/995170.jpg");
+}
+
+#sign-up {
+    width: 500px;
+    margin: auto;
+    padding: 30px 60px;
+    align-self: center;
+    border: 1px solid lightblue;
+    border-radius: 20px;
+    background-color: rgb(240, 240, 240);
+}
+
+.register-title {
+    font-family: 'Geologica', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 500;
+    font-size: 50px;
+    color: midnightblue;
+}
+
+h3 {
+    padding: 0 20px;
+    font-weight: 300;
+    font-size: 30px;
+    color: midnightblue;
+}
+
+.register-emt {
+    width: 400px;
+    padding: 8px;
+    border-radius: 7px;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 16px;
+}
+
+#pws {
+    display: flex;
+    justify-content: space-between;
+}
+
+#password, #cpassword {
+    width: 45%;
+}
+
+button {
+    display: block;
+    margin: 30px auto;
+    width: 100%;
+    padding: 10px;
+    background-color: lightblue;
+    border-radius: 10px;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 18px;
+}
+
+a {
+    display: block;
+    margin: 10px 5px 5px 5px;
+    padding: 5px;
+    text-align: center;
+    font-family: 'Comfortaa', sans-serif;
+    font-size: 15px;
+}

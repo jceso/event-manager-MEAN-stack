@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+<div id="page">
+    <div id="sign-up">
+        <h1 class="register-title">Register here</h1>
+        <div id="register-form" (keyup.enter)="triggerLogin()">
+            <h3 class="register-title">Name*</h3>
+            <input type="text" class="register-emt" autocomplete="off" id="username" required/>
+            <h3 class="register-title">Email*</h3>
+            <input type="text" id="email" class="register-emt" autocomplete="off" required/>
+            <h3 class="register-title">Phone number</h3>
+            <input type="text" id="phonenumber" class="register-emt" autocomplete="off" title="It's not mandatory to put it, but it must contain only numbers or the + in case you're adding the prefix" />
+            <h3 class="register-title">Password*</h3>
+            <div id="pws">
+                <input type="password" id="password" class="register-emt" autocomplete="off" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+                <input type="password" id="cpassword" class="register-emt" autocomplete="off" title="Confirm password" required/>
+            </div>
+            <button (click)="validate()">Sign up</button>
+        </div>
+        
+        <a href="/login">I already have an account!</a>
+    </div>
+</div>

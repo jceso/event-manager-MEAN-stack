@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+<div id="page">
+  <div id="event-page">
+    <h1 id="name">{{ event.name }}</h1>
+    <table id="infos">
+      <tr>
+        <td class="infos-title">Date</td>
+        <td id="date">{{ event.date }}</td>
+      </tr>
+      <tr>
+        <td class="infos-title">Place</td>
+        <td id="place">{{ event.place }}</td>
+      </tr>
+      <tr>
+        <td class="infos-title">Details</td>
+        <td id="details">{{ event.details }}</td>
+      </tr>
+    </table>
+    <h3>Type of tickets:</h3>
+    <table id="tickets">
+      <tr *ngFor="let type of event.t_types">
+        <td id="type-name">{{type.name}}</td>
+        <td><button (click)="purchase(type.name)">€ {{type.price}},00</button></td>
+      </tr>
+    </table>
+  </div>
+</div>

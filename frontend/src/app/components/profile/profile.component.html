@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+<div id="page">
+    <table id="profile">
+        <tr>
+            <td id="icon"><mat-icon>perm_identity</mat-icon></td>
+            <td>
+                <h3 id="name">{{ userInfo.name }}</h3>
+                <p id="points">Obtained points: {{ userInfo.points }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td class="infos-title">Email</td>
+            <td class="infos">{{ userInfo.email }}</td>
+        </tr>
+        <tr>
+            <td class="infos-title">Phone Number</td>
+            <td class="infos" *ngIf="numSaved()">{{ userInfo.phonenumber }}</td>
+            <td class="infos" id="noNum" *ngIf="!numSaved()">You haven't saved any number</td>
+        </tr>
+        <tr>
+            <td class="infos-title">Password</td>
+            <td class="infos">********</td>
+        </tr>
+        <tr>
+            <td colspan="2" *ngIf="isAdm">
+                <button id="admin" (click)="goToAdminWebsite()">Go to admin website</button>
+            </td>
+        </tr>
+    </table>
+</div>

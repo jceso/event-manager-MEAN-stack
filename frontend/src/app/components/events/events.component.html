@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+<div id="filters-div">
+  <button class="filter" (click)="sortAlphabetically()">Sort Alphabetically by name</button>
+  <button class="filter" (click)="sortReverse()">Sort Reverse by name</button>
+  <button class="filter" (click)="sortByPlace()">Sort Alphabetically by Event Place</button>
+  <button class="filter" (click)="sortReversePlace()">Sort Reverse by Event Place</button>
+  <button class="filter" (click)="sortByDateSoonestFirst()">Sort by Date (Soonest)</button>
+  <button class="filter" (click)="sortByDateLatestFirst()">Sort by Date (Latest)</button>
+</div>
+<div id="event-page">
+  <table class="event" *ngFor="let event of listOfEvents">
+    <tr>
+      <td id="event-name">{{ event.name }}</td>
+      <td id="event-date">{{ event.date }}</td>
+    </tr>
+    <tr><td id="event-place" colspan="2">{{ event.place_id }}</td></tr>
+    <tr><td colspan="2"><button id="purch-button" *ngIf="!currentUserExists()" (click)="infoEvent(event._id)">View details</button></td></tr>
+  </table>
+</div>
