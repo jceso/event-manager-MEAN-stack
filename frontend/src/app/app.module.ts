@@ -16,6 +16,7 @@ import { authInterceptor } from './authInterceptor/auth.interceptor';
 import { CartComponent } from './components/cart/cart.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EventDetailsComponent } from './components/event-details/event-details.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EventDetailsComponent } from './components/event-details/event-details.
     RegisterComponent,
     CartComponent,
     ProfileComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

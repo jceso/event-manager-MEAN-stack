@@ -64,13 +64,21 @@ mat-icon {
     color: dimgrey;
 }
 
-#admin {
+button {
     width: 100%;
     display: block;
-    margin-top: 20px;
     padding: 10px;
-    background-color: lightblue;
     border-radius: 10px;
     font-family: 'Comfortaa', sans-serif;
     font-size: 18px;
+}
+
+#edit {
+    margin-top: 20px;
+    background-color: cadetblue;
+}
+
+#admin {
+    margin-top: 15px;
+    background-color: lightblue;
 }

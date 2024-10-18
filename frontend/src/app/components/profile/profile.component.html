@@ -23,6 +23,11 @@
             <td class="infos">********</td>
         </tr>
         <tr>
+            <td colspan="2">
+                <button id="edit" [routerLink]="['/profile-edit']">Edit profile</button>
+            </td>
+        </tr>
+        <tr>
             <td colspan="2" *ngIf="isAdm">
                 <button id="admin" (click)="goToAdminWebsite()">Go to admin website</button>
             </td>
