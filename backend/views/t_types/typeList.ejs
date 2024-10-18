@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Types of tickets</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/users/admins" class="nav-link">See all admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/events" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Ticket types list for <%= event.name %></h1>
+  
+        <% if(types.length>0) { %>
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th style="display: none;">Event ID</th>
+                <th style="display: none;">Type ID</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Edit</th>
+                <th>Eliminate</th>
+              </tr>
+            </thead>
+            <tbody>
+  
+              <% for(var i=0; i<types.length; i++) { %>
+                <tr>
+                  <td style="display: none;"> <%= event._id %></td>
+                  <td style="display: none;"> <%= types[i]._id %></td>
+                  <td> <%= types[i].type%></td>
+                  <td> <%= types[i].price%>€</td>
+                  <td class="tab-link"><a href="/events/<%= event._id %>/tickets/edit/<%= types[i]._id%> "> <i class="material-icons">edit</i> </a></td>
+                  <td class="tab-link"><a href="/events/<%= event._id %>/tickets/remove/<%= types[i]._id%> "> <i class="material-icons">delete</i> </a></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+          <h3><a href="/events/<%= event._id %>/tickets/type">Create new type</a></h3>
+          <h3><a href="/events/show/<%= event._id %>">Go to the event</a></h3>
+        <% } else { %>
+          <div>No tickets found</div>
+          <h3><a href="/events/<%= event._id %>/tickets/type">Create new type</a></h3>
+        <% } %>
+
+        </div>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>

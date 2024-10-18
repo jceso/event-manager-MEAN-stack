@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create User</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/users/admins" class="nav-link">See all admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/events" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Create New User</h1>
+        <form action="/users/create" method="post">
+          <table>
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" /></td>
+              </tr>
+              <tr>
+                <td>Phone Number</td>
+                <td><input type="text" name="phonenumber" minlength="9" pattern="[0-9]{9}"/></td>
+              </tr>
+              <tr>
+                <td>Email address</td>
+                <td><input type="text" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" /></td>
+              </tr>
+              <tr>
+                <td>Role</td>
+                <td>
+                  <select id="role" name="role">
+                    <option value="USER" selected>User</option>
+                    <option value="ADMIN">Admin</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit">Save</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <h3 class="links"><a href="/users">See all users</a></h3>
+      <h3 class="links"><a href="/events">See all events</a></h3>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin List</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/events" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Admin List</h1>
+        <% if(users.length>0) { %>
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th style="display: none;">Id</th>
+                <th>Name</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Show</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+  
+              <% for(var i=0; i<users.length;i++) { %>
+                <tr>
+                  <td> <%= i+1%> </td>
+                  <td style="display: none;"> <%= users[i]._id%></a></td>
+                  <td> <%= users[i].name%></a></td>
+                  <td> <%= users[i].phonenumber%></a></td>
+                  <td> <%= users[i].email%></a></td>
+                  <td class="tab-link"><a href="/users/show/<%= users[i]._id%> "> <i class="material-icons">info</i> </a></td>
+                  <td class="tab-link"><a href="/users/edit/<%= users[i]._id%> "> <i class="material-icons">edit</i> </a></td>
+                  <td class="tab-link"><a href="/users/delete/<%= users[i]._id%> "> <i class="material-icons">delete</i> </a></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div>No admin found</div>
+        <% } %>
+      </div>
+      <h3 class="links"><a href="/users/create">Create new User</a></h3>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>

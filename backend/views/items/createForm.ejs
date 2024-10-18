@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Event</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+
+    <style>
+      table {
+        width: 100%;
+      }
+      .center-link {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 27px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/users/admins" class="nav-link">See all admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/events" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Create New Event</h1>
+        <form action="/events/create" method="post">
+          <table>
+            <tbody>
+              <tr>
+                <td>Name*</td>
+                <td><input type="text" name="name" required/></td>
+              </tr>
+              <tr>
+                <td>Details*</td>
+                <td><input required type="text" name="details" /></td>
+              </tr>
+              <tr>
+                <td>Date*</td>
+                <td><input type="date" name="date" required/></td>
+              </tr>
+              <tr>
+                <td>Place</td>
+                <td>
+                  <% if(places.length>0) { %>
+                    <select id="place_id" name="place_id" required>
+                    <% for(var i=0; i<places.length;i++) { %>
+                      <option value="<%= places[i]._id%>"><%= places[i].name%></option>
+                    <% } %>
+                    </select>
+                    <td><a href="/places/create">Create new place</a></td>
+                  <% } else { %>
+                    <a href="/places/create">Create new place</a>
+                  <% } %>
+                </td>
+              </tr>
+              <tr>
+                <td>Ticket types</td>
+                <td><!-- Devo mettere "Free" oppure "aggiungi ticket types" --></td>
+              </tr>
+              <tr>
+                <td>Capacity of the event</td>
+                <td><input type="number" name="capacity" /></td>
+              </tr>
+              <tr>
+                <td colspan="3" ><button type="submit">Save</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <h3><a href="/events">Watch all the events</a></h3>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>

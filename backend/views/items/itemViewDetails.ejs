@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Event Detail</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/users/admins" class="nav-link">See all admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/events" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Event Detail</h1>
+        <table>
+          <tbody>
+            <tr>
+              <td>Id</td>
+              <td>:</td>
+              <td><%= item._id %></td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>:</td>
+              <td><%= item.name %></td>
+            </tr>
+            <tr>
+              <td>Details</td>
+              <td>:</td>
+              <td><%= item.details %></td>
+            </tr>
+            <tr>
+              <td>Date</td>
+              <td>:</td>
+              <td><%= new Date(item.date).toLocaleDateString('en-GB') %></td>
+            </tr>
+            <tr>
+              <td>Place</td>
+              <td>:</td>
+              <td><%= place.name %></td>
+            </tr>
+            <tr>
+              <%if(item.capacity != null) { %>
+                <td>Capacity</td>
+                <td>:</td>
+                <td><%= item.capacity %></td>
+              <% } else { %>
+                <td colspan="3">This event is open to everyone</td>
+              <% } %>
+            </tr>
+            <tr>
+              <td><a href="/events/<%= item._id %>/tickets/allTypes">Ticket types</a></td>
+              <td>:</td>
+              <td><%= types[0].type %>
+              <% for(var i=1; i<types.length; i++) { %>
+                  , <%= types[i].type %>
+              <% } %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <% if(sales) { %>
+          <h3 class="links"><a href="/events/<%= item._id %>/sales">Watch the bought tickets</a></h3>
+        <% } else { %>
+          <h3 class="links"><a href="/events/<%= item._id %>/tickets/create">Create a ticket</a></h3>
+        <% } %>
+      </div>
+      <h3 class="links"><a href="/events">Watch all the events</a></h3>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Place</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/users/admins" class="nav-link">See all admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/events" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Create New Place</h1>
+        <form action="/places/create" method="post">
+          <table>
+            <tbody>
+              <tr>
+                <td>Name</td>
+                <td><input type="text" name="name" required/></td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td><input type="text" name="address" required/></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit">Save</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <h3 class="links"><a href="/places">See all places</a></h3>
+      <h3 class="links"><a href="/events">See all events</a></h3>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>

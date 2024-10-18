@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Places List</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/users/admins" class="nav-link">See all admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/events" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Place List</h1>
+        <% if(places.length>0) { %>
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Place Name</th>
+                <th>Address</th>
+                <th>Create new ticket</th>
+                <th>Edit</th>
+                <th>Eliminate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i<places.length;i++) { %>
+                <tr>
+                  <td> <%= i+1%> </td>
+                  <td> <%= places[i].name%></td>
+                  <td> <%= places[i].address%></a></td>
+                  <td class="tab-link"><a href="/places/<%= places[i]._id%>/tickets/create"> <i class="material-icons">note_add</i> </a></td>
+                  <td class="tab-link"><a href="/places/edit/<%= places[i]._id%>"> <i class="material-icons">edit</i> </a></td>
+                  <td class="tab-link"><a href="/places/delete/<%= places[i]._id%>"> <i class="material-icons">delete</i> </a></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div>No places found.</div>
+        <% } %>
+      </div>
+      <h3 class="links"><a href="/places/create">Create new place</a></h3>
+      <h3 class="links"><a href="/events">See all events</a></h3>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Event List</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/users/admins" class="nav-link">See all admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Event List</h1>
+        <% if(items.length>0) { %>
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th> # </th>
+                <th style="display: none;"> Id </th>
+                <th> Name </th>
+                <th> Details </th>
+                <th> Date </th>
+                <th> Place </th>
+                <th> Capacity </th>
+                <th> Show </th>
+                <th> Edit </th>
+                <th> Delete </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i<items.length;i++) { %>
+                <tr>
+                  <td> <%= i+1%> </td>
+                  <td style="display: none;"> <%= items[i]._id%> </td>
+                  <td> <%= items[i].name%> </td>
+                  <td> <%= items[i].details%> </td>
+                  <td> <%= new Date(items[i].date).toLocaleDateString('en-GB') %> </td>
+                  <td>
+                    <% for(var j=0; j<places.length; j++) { %>
+                      <% if(places[j]._id==items[i].place_id) { %>
+                        <%= places[j].name%>
+                    <% } else {} }%>
+                  </td>
+                  <%if(items[i].capacity != null) { %>
+                    <td> <%= items[i].capacity%> </td> 
+                  <% } else { %>
+                    <td> Open </td>
+                  <% } %>
+                  <td class="tab-link"><a href="/events/show/<%= items[i]._id%> "> <i class="material-icons">info</i> </a></td>
+                  <td class="tab-link"><a href="/events/edit/<%= items[i]._id%> "> <i class="material-icons">edit</i> </a></td>
+                  <td class="tab-link"><a href="/events/delete/<%= items[i]._id%> "> <i class="material-icons">delete</i> </a></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div>No events found</div>
+        <% } %>
+      </div>
+      <h3 class="links"><a href="/events/create">Create new event</a></h3>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>

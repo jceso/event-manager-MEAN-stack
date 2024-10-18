@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Create Tickets</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/users/admins" class="nav-link">See all admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/events" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>Buy a ticket for <%= event.name %></h1>
+        <form action="/events/<%= event._id %>/tickets/create" method="post">
+          <table>
+            <tbody>
+              <tr>
+                <td>Customer name</td>
+                <td><select name="customer_id" required>
+                  <option value="">Select a customer or create a new user =></option>
+                  <% for(var i=0;i<customers.length;i++) { %>
+                    <option value="<%= customers[i]._id%>"><%= customers[i].email%></option>
+                <% } %>
+                </select></td>
+                <td><a href="/users/create">Create a new user</a></td>
+              </tr>
+              <tr>
+                <td>Type of ticket</td>
+                <td>
+                  <select name="type_id" required>
+                    <% for(var i=0;i<types.length;i++) { %>
+                      <option name="<%= types[i]._id %>" value="<%= types[i]._id %>"><%= types[i].type %> <%= types[i].price %>,00€</option>
+                    <% } %>
+                  </select>
+                  <td><a href="/events/<%= event._id %>/tickets/type">Create new type of ticket</a></td>
+              </tr>
+              <tr>
+                <td>Quantity</td>
+                <td><input type="number" name="quantity" min="1" max="<%= event.capacity - sales.length %>" value="1"/></td>
+              </tr>
+              <tr>
+                <td colspan="2"><button type="submit">Save</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <% if (sales.length>0) { %>
+        <h3 class="links"><a href="/events/<%= event._id %>/sales">See all tickets of the event</a></h3>
+      <% } %>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>

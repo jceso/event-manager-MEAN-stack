@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Detail</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/users/admins" class="nav-link">See all admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/events" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1>User Detail</h1>
+        <table>
+          <tbody>
+            <tr>
+              <td>Id</td>
+              <td>:</td>
+              <td><%= user._id %></td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td>:</td>
+              <td><%= user.name %></td>
+            </tr>
+            <tr>
+              <td>Phone number</td>
+              <td>:</td>
+              <td><%= user.phonenumber %></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>:</td>
+              <td><%= user.email %></td>
+            </tr>
+            <tr>
+              <td>Role</td>
+              <td>:</td>
+              <td><%= user.role %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h2><a href="/users/edit/<%= user._id%>">Edit this user</a></h2>
+      <h3 class="links"><a href="/users">Watch all users</a></h3>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>

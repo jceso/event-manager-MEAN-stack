@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sale List</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <a href="/" class="nav-branding">PortugueseRoots</a>
+        <a href="/users" class="button">See all Users</a>
+        <a href="/users/create" class="button secondary">Create user</a>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="/users/admins" class="nav-link">See all admins</a>
+          </li>
+          <li class="nav-item">
+            <a href="/events" class="nav-link">See all the events</a>
+          </li>
+          <li class="nav-item">
+            <a href="/places" class="nav-link">See all the places</a>
+          </li>
+          <li class="nav-item">
+            <a href="/sales" class="nav-link">See all the sales</a>
+          </li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+    </header>
+    <section>
+      <div class="container">
+        <h1><%= sales[0].event_name %> - Bought tickets</h1>
+        <% if(sales.length>0) { %>
+          <table class="list-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Ticket Type</th>
+                <th>Customer Mail</th>
+                <th>Eliminate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i=0; i<sales.length; i++) { %>
+                <tr>
+                  <td><%= i+1 %></td>
+                  <td><%= sales[i].ticket_type %></td> 
+                  <td><%= sales[i].customer_email %></td>
+                  <td class="tab-link"><a href="/sales/<%= sales[i].event_id %>/deleteFromEvent/<%= sales[i]._id%>"> <i class="material-icons">delete</i> </a></td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <% } else { %>
+          <div>No sales found</div>
+        <% } %>
+      </div>
+      <% if(sales.length != sales[0].capacity) { %>
+        <h3 class="links"><a href="/events/<%= sales[0].event_id %>/tickets/create">Create a ticket</a></h3>
+      <% } else {} %>
+    </section>
+  </body>
+  <script src="/js/navbar.js"></script>
+</html>
