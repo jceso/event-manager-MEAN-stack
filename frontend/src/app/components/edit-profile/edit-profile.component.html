@@ -1,1 +1,32 @@
-<p>edit-profile works!</p>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Geologica" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa" />
+<div id="page">
+    <table id="profile">
+        <tr>
+            <td class="infos-title">Name</td>
+            <td><input type="text" class="infos" value="{{ userInfo.name }}"/></td>
+        </tr>
+        <tr>
+            <td class="infos-title">Email</td>
+            <td><input type="text" class="infos" value="{{ userInfo.email }}" disabled/></td>
+        </tr>
+        <tr>
+            <td class="infos-title">Phone Number</td>
+            <td><input type="text" class="infos" value="{{ userInfo.phonenumber }}"/></td>
+        </tr>
+        <tr>
+            <td class="infos-title">Password</td>
+            <td id="pw">********</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button id="save" [routerLink]="['/profile-edit']">Save changes</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button id="back" [routerLink]="['/profile']">Back to profile</button>
+            </td>
+        </tr>
+    </table>
+</div>

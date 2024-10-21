@@ -23,6 +23,7 @@
     padding: 10px 25px;
     background-image: url("https://images2.alphacoders.com/995/995170.jpg");
     height: 100%;
+    background-size: cover;
 }
 
 .event {
