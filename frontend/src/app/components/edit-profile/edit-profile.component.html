@@ -4,15 +4,15 @@
     <table id="profile">
         <tr>
             <td class="infos-title">Name</td>
-            <td><input type="text" class="infos" value="{{ userInfo.name }}"/></td>
+            <td><input type="text" class="infos" id="username" value="{{ userInfo.name }}"/></td>
         </tr>
         <tr>
             <td class="infos-title">Email</td>
-            <td><input type="text" class="infos" value="{{ userInfo.email }}" disabled/></td>
+            <td><input type="text" class="infos" id="email" value="{{ userInfo.email }}" disabled/></td>
         </tr>
         <tr>
             <td class="infos-title">Phone Number</td>
-            <td><input type="text" class="infos" value="{{ userInfo.phonenumber }}"/></td>
+            <td><input type="text" class="infos" id="phonenumber" value="{{ userInfo.phonenumber }}"/></td>
         </tr>
         <tr>
             <td class="infos-title">Password</td>
@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td colspan="2">
-                <button id="save" [routerLink]="['/profile-edit']">Save changes</button>
+                <button id="save" (click)="validate()">Save changes</button>
             </td>
         </tr>
         <tr>

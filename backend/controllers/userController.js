@@ -3,6 +3,7 @@ var User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('../jwtsecret/config');
+const user = require('../models/user');
 
 var userController = {};
 
@@ -36,7 +37,7 @@ userController.show = function (req, res) {
     });
 }
 
-// Login
+// Frontend login
 userController.check = function(req, res){
     User.findOne({ email: req.body.e }).then(user => {
         if (!user)
@@ -61,7 +62,7 @@ userController.check = function(req, res){
     });
 }
 
-// Register
+// Frontend register
 userController.register = async function(req, res){
     try {
         const existingUser = await User.findOne({ email: req.body.email });
@@ -90,6 +91,34 @@ userController.register = async function(req, res){
         console.log('Saving error:', err);
         return res.status(500).json({ error: 'Error on the server' });
     }
+}
+
+// Frontend edit profile
+userController.editClient = async function(req, res){
+    try {
+        const user = await User.findOne({ email: req.body.email });
+        if (!user)
+            return res.status(404).json({ error: 'No user found' });
+
+        User.findByIdAndUpdate(user._id, user, { new: true }).then(editedUser => {
+            if (!editedUser){
+                console.log('No user found with the given ID');
+                res.redirect('/error');
+            }
+            var token = jwt.sign({ id: user._id }, config.secret, {
+                expiresIn: 86400 // expires in 24 hours
+            });
+    
+            res.status(200).send({ auth: true, token: token, name: user.name });
+        }).catch(err => {
+            console.log('Saving error - User  |  ', err);
+            res.redirect('/error')
+        });
+        
+    } catch (err) {
+        console.log("err: ", err);
+        return res.status(500).json({ error: 'Error on the server' });
+    };
 }
 
 // Form to create 1 user

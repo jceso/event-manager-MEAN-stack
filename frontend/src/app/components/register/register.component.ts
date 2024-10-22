@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   ePattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
   pwPattern =/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
-  nPattern = /(\+[0-9]+)|[0-9]+/;
+  nPattern = /^(\+?[0-9]{9,15})$/;
 
   name: string = "";
   email: string = "";
@@ -41,7 +41,6 @@ export class RegisterComponent {
     this.password = (document.getElementById("password") as HTMLInputElement).value;
     this.cpassword = (document.getElementById("cpassword") as HTMLInputElement).value;
     this.number = (document.getElementById("phonenumber") as HTMLInputElement).value;
-
 
     if (this.name != "") {
       if (this.email != "") {

@@ -35,6 +35,13 @@ export class AuthService {
     return ciao;
   }
 
+  edit(username: string, e: string, pn: string) {
+    return this.http.post<any>(endpoint+"edit", {name: username, email: e, phonenumber: pn}, options)
+      .pipe(catchError((error) => {
+        throw error;
+      }));
+  }
+
   logout() {
     localStorage.removeItem('currentUser');
   }
