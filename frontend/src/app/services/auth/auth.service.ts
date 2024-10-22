@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
-
+import { Observable, catchError, map, of } from 'rxjs';
 import { User } from '../../models/user';
 
 const endpoint = "http://localhost:8080/users/";
@@ -13,6 +12,19 @@ const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' 
 export class AuthService {
 
   constructor(private http: HttpClient) { }
+
+  check(currentUser : any): Observable<boolean> {
+    return this.http.get(endpoint + "check-login", { headers: new HttpHeaders({ 'token': currentUser }) }).pipe(
+      map((response: any) => {
+        return true;           // User is authenticated
+      }),
+      catchError((error) => {  // Token is invalid or error occurred
+        this.logout();
+        return of(false);
+      })
+    );
+  }
+
 
   login(email: string, password:string): Observable<Response>{
     return this.http.post<Response>(endpoint+"login", {e: email, pw: password}, options)
@@ -30,9 +42,8 @@ export class AuthService {
 
   getInfo(): Observable<User> {
     let currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}').token;
-    let ciao:Observable<User> = this.http.get<User>(endpoint+"user-info-endpoint", {headers: new HttpHeaders({'token': currentUser})});
-    console.log(ciao);
-    return ciao;
+    let user: Observable<User> = this.http.get<User>(endpoint+"user-info-endpoint", {headers: new HttpHeaders({'token': currentUser})});
+    return user;
   }
 
   edit(username: string, e: string, pn: string) {

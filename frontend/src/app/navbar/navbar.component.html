@@ -5,9 +5,9 @@
 
   <div class="spacer"></div>
   <a class="nav-links" routerLink="events">All events</a>
-  <a class="nav-links cart-link" routerLink="cart" *ngIf="currentUserExists()">My tickets<mat-icon>shopping_cart</mat-icon></a>
-  <a class="nav-links" routerLink="register" *ngIf="!currentUserExists()">Register</a>
-  <a class="nav-links btn-accent" routerLink="login" *ngIf="!currentUserExists()" color="accent">Login</a>
-  <a class="nav-links btn-warn" *ngIf="currentUserExists()" (click)="logout()">Logout</a>
-  <a class="profile-btn" routerLink="profile" id="profile" *ngIf="currentUserExists()"><mat-icon>account_circle</mat-icon></a> <!--  -->
+  <a class="nav-links cart-link" routerLink="cart" *ngIf="isAuthenticated">My tickets<mat-icon>shopping_cart</mat-icon></a>
+  <a class="nav-links" routerLink="register" *ngIf="!isAuthenticated">Register</a>
+  <a class="nav-links btn-accent" routerLink="login" *ngIf="!isAuthenticated" color="accent">Login</a>
+  <a class="nav-links btn-warn" *ngIf="isAuthenticated" (click)="logout()">Logout</a>
+  <a class="profile-btn" routerLink="profile" id="profile" *ngIf="isAuthenticated"><mat-icon>account_circle</mat-icon></a> <!--  -->
 </nav>

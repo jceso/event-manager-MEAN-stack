@@ -37,6 +37,26 @@ userController.show = function (req, res) {
     });
 }
 
+// Check login for frontend
+userController.checkLogin = function (req, res) {
+    var token = req.headers['token'];
+
+    jwt.verify(token, config.secret, function(err, decoded) {
+        if (err) {
+            console.error("JWT validation error: ", err);
+            return res.status(500).json({ error: 'Validation Error', details: err.message });
+        }
+
+        User.findOne({_id: decoded.id}).then(() => {
+            console.log("User found with ID: " + decoded.id)
+            res.status(200);
+        }).catch(err => {
+            console.log("User NOT found with sent ID");
+            return res.status(404);
+        });
+    });
+};
+
 // Frontend login
 userController.check = function(req, res){
     User.findOne({ email: req.body.e }).then(user => {
@@ -121,6 +141,26 @@ userController.editClient = async function(req, res){
     };
 }
 
+// Get profile infos for frontend
+userController.profile = function (req, res) {
+    var token = req.headers['token'];
+
+    jwt.verify(token, config.secret, function(err, decoded) {
+        if (err) {
+            console.error("JWT validation error: ", err);
+            return res.status(500).json({ error: 'Validation Error', details: err.message });
+        }
+
+        User.findOne({_id: decoded.id}).then(user => {
+            console.log("User found: ", user);
+            res.status(200).json(user);
+        }).catch(err => {
+            console.log("User not found with ID: ", decoded.id);
+            return res.status(404).json({ error: 'User not found' });
+        });
+    });
+};
+
 // Form to create 1 user
 userController.formCreate = function (req, res) {
     res.render('users/createForm');
@@ -176,25 +216,5 @@ userController.delete = function (req, res) {
         res.redirect('/error');
     });
 }
-
-// Get profile infos
-userController.profile = function (req, res) {
-    var token = req.headers['token'];
-
-    jwt.verify(token, config.secret, function(err, decoded) {
-        if (err) {
-            console.error("JWT validation error: ", err);
-            return res.status(500).json({ error: 'Validation Error', details: err.message });
-        }
-
-        User.findOne({_id: decoded.id}).then(user => {
-            console.log("User found: ", user);
-            res.status(200).json(user);
-        }).catch(err => {
-            console.log("User not found with ID: ", decoded.id);
-            return res.status(404).json({ error: 'User not found' });
-        });
-    });
-};
 
 module.exports = userController;

@@ -1,29 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private auth: AuthService, private router: Router){ }
-  
+  isAuthenticated: boolean = true;
+
+  constructor(private auth: AuthService, private router: Router, private cd: ChangeDetectorRef) { }
+
   ngOnInit(): void {
-    this.currentUserExists();
+    this.checkUserAuthentication();
   }
 
-  currentUserExists(): boolean {
+  checkUserAuthentication(): void {
     const currentUser = localStorage.getItem('currentUser');
-    if (currentUser)
-      return true; // User is logged in and token is valid
-    return false; // No user is logged in
+  
+    if (currentUser) {
+      try {
+        const token = JSON.parse(currentUser).token;
+  
+        this.auth.check(token).subscribe({
+          next: (isValid: boolean) => {
+            this.isAuthenticated = isValid;  // Validation checked
+          },
+          error: () => {  // Token is invalid
+            this.isAuthenticated = false;
+            localStorage.removeItem('currentUser');
+            this.cd.detectChanges();
+          }
+        });
+      } catch (error) {
+        this.isAuthenticated = false; // No token found in currentUser
+      }
+    } else
+      this.isAuthenticated = false; // There's no currentUser in local storage
   }
+  
 
   logout() {
     this.auth.logout();
+    this.isAuthenticated = false;
     this.router.navigate(['login']);
   }
 }
-

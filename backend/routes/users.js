@@ -5,6 +5,7 @@ var userController = require('../controllers/userController');
 router.get('/', userController.showAll); //default
 router.get('/admins', userController.showAdmins);
 router.get('/show/:id', userController.show);
+router.get('/check-login', userController.checkLogin); // Frontend check for navbar
 router.post('/login', userController.check); // Frontend login
 router.post('/register', userController.register); // Frontend register
 router.post('/edit', userController.editClient); // Frontend edit
