@@ -8,42 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isAuthenticated: boolean = true;
+  isAuth: boolean = false;
 
   constructor(private auth: AuthService, private router: Router, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.checkUserAuthentication();
+    // Subscribe to auth status observable
+    this.auth.isAuth$.subscribe(isAuthenticated => {
+      this.isAuth = isAuthenticated;
+    });
+
+    this.auth.check().subscribe();
   }
 
-  checkUserAuthentication(): void {
-    const currentUser = localStorage.getItem('currentUser');
-  
-    if (currentUser) {
-      try {
-        const token = JSON.parse(currentUser).token;
-  
-        this.auth.check(token).subscribe({
-          next: (isValid: boolean) => {
-            this.isAuthenticated = isValid;  // Validation checked
-          },
-          error: () => {  // Token is invalid
-            this.isAuthenticated = false;
-            localStorage.removeItem('currentUser');
-            this.cd.detectChanges();
-          }
-        });
-      } catch (error) {
-        this.isAuthenticated = false; // No token found in currentUser
-      }
-    } else
-      this.isAuthenticated = false; // There's no currentUser in local storage
-  }
   
 
   logout() {
     this.auth.logout();
-    this.isAuthenticated = false;
     this.router.navigate(['login']);
   }
 }

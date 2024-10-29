@@ -118,7 +118,11 @@ userController.editClient = async function(req, res){
     try {
         const user = await User.findOne({ email: req.body.email });
         if (!user)
-            return res.status(404).json({ error: 'No user found' });
+            return res.status(404).json({ error: 'No user found' })
+
+        // Update the user object with new values from req.body
+        user.name = req.body.name;
+        user.phonenumber = req.body.phonenumber;
 
         User.findByIdAndUpdate(user._id, user, { new: true }).then(editedUser => {
             if (!editedUser){
