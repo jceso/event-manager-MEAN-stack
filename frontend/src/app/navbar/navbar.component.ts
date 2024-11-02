@@ -13,7 +13,6 @@ export class NavbarComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    // Subscribe to auth status observable
     this.auth.isAuth$.subscribe(isAuthenticated => {
       this.isAuth = isAuthenticated;
     });

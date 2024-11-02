@@ -122,7 +122,6 @@ saleController.formCreateEvent = function(req,res){
 saleController.createEvent = function(req,res){
     let promises = [];
     var time = new Date();
-    console.log(time)
 
     for (var i=0; i<req.body.quantity; i++) {
         var sale = new Sale(req.body);
@@ -178,6 +177,7 @@ saleController.save = function(req,res){
     var token = req.headers['token'];
     var event_id = req.headers['event_id'];
     var type_name = req.headers['type'];
+    var time = new Date();
 
     jwt.verify(token, config.secret, function(err, decoded) {
         if (err)
@@ -185,6 +185,7 @@ saleController.save = function(req,res){
         
         T_types.findOne({ type: type_name, event_id: event_id }).then((type) => {
             var sale = new Sale({
+                time : time,
                 customer_id : decoded.id,
                 event_id : event_id,
                 type_id : type._id
