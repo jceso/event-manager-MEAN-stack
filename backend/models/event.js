@@ -7,9 +7,7 @@ var EventSchema = new mongoose.Schema({
     place_id: String,
     details: String,
     types: [String],
-    capacity: Number,
-
-    e_structure: String  //If seated, ID of the eventStructure
+    capacity: Number
 });
 
 module.exports = mongoose.model('Event', EventSchema);
